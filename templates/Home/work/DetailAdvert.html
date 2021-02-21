@@ -1,0 +1,170 @@
+{% extends "Home/Base/main.html" %}
+
+{% block title %}{{title}}{% endblock title %}
+
+
+{% block body %}
+<main id="main">
+
+    <!-- ======= Intro Single ======= -->
+    <section class="intro-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-8">
+                    <div class="title-single-box">
+                        <h1 class="title-single">{{advert.title}}</h1>
+                        <span class="color-text-a">{{advert.detail}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Intro Single-->
+
+    <!-- ======= Property Single ======= -->
+    <section class="property-single nav-arrow-b">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+
+                    {% if advert.get_gallery %}
+                    {% include "Home/component/Detail/_slider.html" with gallery=advert.get_gallery %}
+                    {% else %}
+                    <img src="{{advert.get_poster}}"
+                        class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
+                        alt="{{advert.title}}">
+                    {% endif %}
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="row justify-content-between">
+                        <div class="col-md-5 col-lg-4">
+                            <div class="property-price d-flex justify-content-center foo">
+                                <div class="card-header-c d-flex">
+                                    <div class="card-box-ico">
+                                        <span class="bi bi-cash">تومان</span>
+                                    </div>
+                                    <div class="card-title-c align-self-center">
+                                        <h5 class="title-c">{{advert.get_price_split}}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="property-summary">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="title-box-d section-t4">
+                                            <h3 class="title-d">جزئیات</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="summary-list">
+                                    <ul class="list">
+                                        <li class="d-flex justify-content-between">
+                                            <strong>منطقه:</strong>
+                                            <span>{{advert.stat}}</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>نوع:</strong>
+                                            <span>{{advert.get_house_type_display}}</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>دسته بندی:</strong>
+                                            <span>{{advert.get_category_display}}</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>متراژ:</strong>
+                                            <span>{{advert.area}}m
+                                                <sup>2</sup>
+                                            </span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>اتاق خواب:</strong>
+                                            <span>{{advert.beds}}</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>حمام:</strong>
+                                            <span>{{advert.baths}}</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>سرویس بهداشتی:</strong>
+                                            <span>{{advert.wc}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7 col-lg-7 section-md-t3">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="title-box-d">
+                                        <h3 class="title-d">توضیحات بیشتر</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="property-description">
+                                <p class="description color-text-a">
+                                    {{advert.description}}
+                                </p>
+                            </div>
+                            {% if advert.options.all %}
+                            <div class="row section-t3">
+                                <div class="col-sm-12">
+                                    <div class="title-box-d">
+                                        <h3 class="title-d">امکانات</h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="amenities-list color-text-a">
+                                <ul class="list-a no-margin">
+                                    {% for option in advert.options.all %}
+                                    <li class="">
+                                        <p class="pl-5">{{option.title}}</p>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-10 offset-md-1">
+                    <ul class="nav nav-pills-a nav-pills mb-3 section-t3" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="pills-video-tab" data-bs-toggle="pill" href="#pills-video"
+                                role="tab" aria-controls="pills-video" aria-selected="true">ویدیو</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-plans-tab" data-bs-toggle="pill" href="#pills-plans"
+                                role="tab" aria-controls="pills-plans" aria-selected="false">نقشه ساختمان</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-map-tab" data-bs-toggle="pill" href="#pills-map" role="tab"
+                                aria-controls="pills-map" aria-selected="false">آدرس گوگل مپ</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-video" role="tabpanel"
+                            aria-labelledby="pills-video-tab">
+                            <iframe src="{{advert.url}}" width="100%" height="460" frameborder="0"
+                                webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                        </div>
+                        <div class="tab-pane fade" id="pills-plans" role="tabpanel" aria-labelledby="pills-plans-tab">
+                            <img src="static/img/plan2.jpg" alt="" class="img-fluid">
+                        </div>
+                        <div class="tab-pane fade" id="pills-map" role="tabpanel" aria-labelledby="pills-map-tab">
+                            <iframe src="#" width="100%" height="460" frameborder="0" style="border:0"
+                                allowfullscreen=""></iframe>
+                        </div>
+                    </div>
+                </div>
+                {% include "Home/component/_contact_with_agent.html" with user=advert.user %}
+            </div>
+        </div>
+    </section><!-- End Property Single-->
+
+</main>
+{% endblock body %}

@@ -1,0 +1,96 @@
+{% extends 'Home/Base/main.html' %}
+
+{% block title %}{{title}}{% endblock title %}
+
+
+{% block body %}
+<main id="main">
+    <!-- =======Intro Single ======= -->
+    <section class="intro-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-8">
+                    <div class="title-single-box">
+                        <h1 class="title-single">مشاوران</h1>
+                        <span class="color-text-a"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="agents-grid grid">
+        <div class="container">
+            <div class="row">
+                {% if agents %}
+                {% for agent in agents %}
+                <div class="col-md-4">
+                    <div class="card-box-d">
+                        <div class="card-img-d">
+                            <img src="{{agent.get_image}}" alt="" class="img-d img-fluid">
+                        </div>
+                        <div class="card-overlay card-overlay-hover">
+                            <div class="card-header-d">
+                                <div class="card-title-d align-self-center">
+                                    <h3 class="title-d">
+                                        <a href="#" class="link-two">{{agent.get_full_name}}
+                                            <!-- <br>can enter here role of user</a> --></a>
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="card-body-d">
+                                <p class="content-d color-text-a">
+                                    {{agent.bio}}
+                                </p>
+                                <div class="info-agents color-a">
+                                    <p>
+                                        <strong>تلفن: </strong> {{agent.phone}}
+                                    </p>
+                                    <p>
+                                        <strong>ایمیل: </strong> {{agent.email}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card-footer-d">
+                                <div class="socials-footer d-flex justify-content-center">
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <a href="#" class="link-one">
+                                                <i class="bi bi-facebook" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="#" class="link-one">
+                                                <i class="bi bi-twitter" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="#" class="link-one">
+                                                <i class="bi bi-instagram" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="#" class="link-one">
+                                                <i class="bi bi-linkedin" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div class="col-12">
+                    <div class="alert alert-warning text-center" role="alert">
+                        <h4 class="alert-heading text-dark">داده ای یافت نشد.</h4>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            {% include "Home/component/_pagination_for_agent.html" with agents=agents %}
+        </div>
+    </section>
+
+</main>
+{% endblock body %}

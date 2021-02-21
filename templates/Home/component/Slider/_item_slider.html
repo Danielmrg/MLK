@@ -1,0 +1,32 @@
+<div class="container">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            {% for count in counters %}
+            <li data-target="#carouselExampleIndicators" data-slide-to="{{forloop.counter}}"
+                class="{{forloop.first|yesno:'active, '}} bg-success"></li>
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner">
+            {% for objects in list_objects %}
+            <div class="carousel-item {{forloop.first|yesno:'active, '}}">
+                <div class="row p-2 mx-auto">
+                    {% for obj in objects  %}
+                    <div class="col-md-4">
+                        {% include 'Home/component/Card/_Style1.html' with obj=obj %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>

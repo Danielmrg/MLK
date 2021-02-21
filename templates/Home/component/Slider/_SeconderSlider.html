@@ -1,0 +1,52 @@
+{% load slider_list %}
+
+{% get_slider as sliders %}
+<div id="carousel-z1" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        {% for slide in sliders %}
+        <li data-target="#carousel-z1" data-slide-to="{{forloop.counter}}"
+            class="{{forloop.first|yesno:'active, '}} bg-success"></li>
+        {% endfor %}
+
+    </ol>
+    <div class="carousel-inner">
+        {% for slide in sliders %}
+        <div class="carousel-item {{forloop.first|yesno:'active, '}}">
+            <img src="{{slide.get_poster}}" alt="{{slide.title}}" class="w-100 bg-image h-75" style="">
+            <div class="carousel-caption d-none d-md-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 intro-body">
+
+                            <h1 class="intro-title mb-4">
+                                <span class="color-b">{{slide.title}}</span>
+                            </h1>
+                            <p class="intro-title-top text-success">
+                                <a class="">
+                                    <span class="p-5">
+                                        {{slide.get_price_of_meter}}
+                                    </span>
+                                </a>
+                            </p>
+                            <p class="intro-subtitle intro-price">
+                                <a href="#"><span class="price-a">{{slide.get_category_display}} |
+                                        {{slide.get_price_split}} تومان</span></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+    </div>
+    <a class="carousel-control-prev" href="#carousel-z1" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel-z1" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>

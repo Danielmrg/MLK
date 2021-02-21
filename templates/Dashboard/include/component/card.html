@@ -1,0 +1,30 @@
+<div class="card">
+    <img src="{{advert.get_image}}" style='max-height:250px;' class="card-img-top" alt="...">
+    <div class="card-img-overlay">
+        {% if advert.get_status %}
+        <span class="badge badge-danger">فعال</span>
+        {% else %}
+        <span class="badge badge-warning">غیر فعال</span>
+        {% endif %}
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <p>{{advert.title}}</p>
+                <small class="d-inline">{{advert.get_user.get_full_name}}</small>
+                <small class="d-inline float-right"><strong>بنگاه :ارتیس</strong></small>
+            </div>
+            <div class="col-12">
+                <p>{{advert.description|truncatewords:7}}
+            </div>
+            <div class="col-12">
+                <a href="{{advert.get_absolute_url}}" class="btn btn-primary"><i class="fas fa-eye"></i> نمایش
+                    جزئیات</a>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <time class='d-inline float-right '>{{advert.date_added|timesince}}</time>
+        <p class='d-inline'>{{advert.get_price}}</p>
+    </div>
+</div>

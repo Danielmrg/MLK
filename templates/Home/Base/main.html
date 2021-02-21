@@ -1,0 +1,30 @@
+{% load static %}
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>MLK-{% block title %}Home{% endblock title %}</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    {% include "Home/Base/main static/css.html" %}
+    {% block style %}
+
+    {% endblock style %}
+</head>
+
+<body>
+
+    {% include "Home/component/Navbar/_Nav.html" %}
+    {% block body %}
+
+    {% endblock body %}
+    {% include "Home/component/Footer/_sectionFooter.html" %}
+    {% include "Home/component/Footer/_Footer.html" %}
+
+    {% include "Home/Base/main static/js.html" %}
+
+</body>
+
+</html>

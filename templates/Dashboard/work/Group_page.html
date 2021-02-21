@@ -1,0 +1,129 @@
+{% extends "dashboard/base/main.html" %}
+{% load static %}
+{% block title %}صفحه بنگاه{% endblock title %}
+
+{% block stat_box %}
+{% include 'dashboard/include/component/stat_box.html' %}
+{% endblock stat_box %}
+{% block body %}
+<section class="col-lg-12 connectedSortable mx-auto">
+  <div class="card">
+    <div class="card-header d-flex p-0">
+      <h3 class="card-title p-3">
+        <i class="fas fa-chart-pie mr-1"></i>
+        آگهی های بنگاه من
+      </h3>
+      <ul class="nav nav-pills ml-auto p-2">
+        <li class="nav-item">
+          <a class="nav-link active" href="#sales" data-toggle="tab">آگهی های فعال</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#mortgage" data-toggle="tab">آگهی های غیر فعال</a>
+        </li>
+      </ul>
+    </div><!-- /.card-header -->
+    <div class="card-body">
+      <div class="tab-content p-0">
+        <!-- Morris chart - Sales -->
+        <div class="container-fluid tab-pane active overflow-auto" id="sales"
+          style="position: relative; height: 800px;">
+          <div class="row row-cols-1 row-cols-md-3">
+            {% if request.user.get_estate %}
+            {% for advert in request.user.get_active_advertising %}
+            <div class="col-lg-4 col-sm-12">
+              <div class="card">
+                <img src="{{advert.get_image}}" style='max-height:250px;' class="card-img-top" alt="...">
+                <div class="card-img-overlay">
+                  {% if advert.get_status %}
+                  <span class="badge badge-danger">فعال</span>
+                  {% else %}
+                  <span class="badge badge-warning">غیر فعال</span>
+                  {% endif %}
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12">
+                      <p>{{advert.title}}</p>
+                      <small class="d-inline"><strong>{{advert.get_user.get_full_name}}</strong></small>
+                      <small class="d-inline float-right"><strong>بنگاه
+                          :{{advert.get_user.estate.title}}</strong></small>
+                    </div>
+                    <div class="col-12">
+                      <p>{{advert.description|safe|truncatewords:6}}
+                    </div>
+                    <div class="col-12">
+                      <a href="{{advert.get_absolute_url}}" class="btn btn-primary"><i class="fas fa-eye"></i> نمایش
+                        جزئیات</a>
+                      <a href="#" class="btn btn-danger my-2"><i class="fas fa-trash-alt"></i> حذف</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <time class='d-inline float-right '>{{advert.date_added|timesince}}</time>
+                  <p class='d-inline'>{{advert.get_price}}</p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="col-8 mx-auto my-auto w-100 h-100">
+              <div class="alert alert-warning text-center" role="alert">
+                <p>داده ای یافت نشد!</p>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="container-fluid tab-pane overflow-auto" id="mortgage" style="position: relative; height: 800px;">
+          <div class="row row-cols-1 row-cols-md-3">
+            {% if request.user.get_deactivate_advertising %}
+            {% for advert in request.user.get_deactivate_advertising %}
+            <div class="col-lg-4 col-sm-12">
+              <div class="card">
+                <img src="{{advert.get_image}}" style='max-height:250px;' class="card-img-top" alt="...">
+                <div class="card-img-overlay">
+                  {% if advert.get_status %}
+                  <span class="badge badge-danger">فعال</span>
+                  {% else %}
+                  <span class="badge badge-warning">غیر فعال</span>
+                  {% endif %}
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12">
+                      <p>{{advert.title}}</p>
+                      <small class="d-inline"><strong>{{advert.get_user.get_full_name}}</strong></small>
+                      <small class="d-inline float-right"><strong>بنگاه
+                          :{{advert.get_user.estate.title}}</strong></small>
+                    </div>
+                    <div class="col-12">
+                      <p>{{advert.description|safe|truncatewords:7}}
+                    </div>
+                    <div class="col-12">
+                      <a href="{{advert.get_absolute_url}}" class="btn btn-primary"><i class="fas fa-eye"></i> نمایش
+                        جزئیات</a>
+                      <a href="#" class="btn btn-danger my-2"><i class="fas fa-trash-alt"></i> حذف</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <time class='d-inline float-right '>{{advert.date_added|timesince}}</time>
+                  <p class='d-inline'>{{advert.get_price}}</p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="col-8 mx-auto my-auto w-100 h-100">
+              <div class="alert alert-warning text-center" role="alert">
+                <p>داده ای یافت نشد!</p>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div><!-- /.card-body -->
+  </div>
+</section>
+{% endblock body %}

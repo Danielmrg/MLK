@@ -1,1 +1,0 @@
-from .formfilter import FilterForm

@@ -1,0 +1,74 @@
+{% extends "Home/Base/main.html" %}
+{% load static %}
+{% load truncate_tag %}
+
+{% block body %}
+{% include "Home/component/Slider/_SeconderSlider.html" %}
+<main id="main">
+    <!-- ======= Latest News Section ======= -->
+    <section class="section-news section-t8">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    {% include "Home/component/Card/_Header_Card.html" with category_title="فروش" %}
+                </div>
+                {% include 'Home/component/Slider/_item_slider.html' with list_objects=saleadverts|my_grouper:3 counters='23' %}
+
+            </div>
+
+        </div>
+    </section>
+    <!-- ======= Latest News Section ======= -->
+    <section class="section-news section-t8">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    {% include "Home/component/Card/_Header_Card.html" with category_title="خرید" %}
+                </div>
+                {% include 'Home/component/Slider/_item_slider.html' with list_objects=buyadverts|my_grouper:3 counters='23' %}
+            </div>
+
+        </div>
+    </section>
+    <!-- ======= Latest News Section ======= -->
+    <section class="section-news section-t8">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    {% include "Home/component/Card/_Header_Card.html" with category_title="رهن کامل" %}
+                </div>
+                {% include 'Home/component/Slider/_item_slider.html' with list_objects=fullrentadverts|my_grouper:3 counters='23' %}
+            </div>
+
+        </div>
+    </section>
+    <!-- ======= Latest News Section ======= -->
+    <section class="section-news section-t8">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    {% include "Home/component/Card/_Header_Card.html" with category_title="رهن" %}
+                </div>
+                {% include 'Home/component/Slider/_item_slider.html' with list_objects=rentadverts|my_grouper:3 counters='23' %}
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ======= Agents Section ======= -->
+    {% comment %}
+    <section class="section-agents section-t8">
+        <div class="container">
+            {% include "Home/component/Card/_Header_Card.html" %}
+            <div class="row">
+                {% include 'Home/component/Card/_Agent.html' %}
+
+            </div>
+        </div>
+    </section>
+    {% endcomment %}
+    <!-- End Agents Section -->
+
+</main>
+{% endblock body %}

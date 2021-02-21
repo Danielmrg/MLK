@@ -1,0 +1,40 @@
+<div class="card-body table-responsive p-0" style="height: 500px;">
+    <table class="table table-head-fixed">
+        <thead>
+            <tr>
+                <th class="text-center">پوستر</th>
+                <th class="text-center">عنوان</th>
+                <th class="text-center">بنگاه</th>
+                <th class="text-center">نویسنده</th>
+                <th class="text-center">قیمت</th>
+                <th class="text-center">وضعیت</th>
+                <th class="text-center">تاریخ</th>
+                <th class="text-center">تغییرات</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for advert in adverts %}
+            <tr>
+                <td>{{advert.get_html_poster}}</td>
+                <td class="p-5"><a href="{{advert.get_absolute_url}}">{{advert.title|title}}</a></td>
+                <td class="p-5">آرتیس</td>
+                <td class="p-5">{{advert.user.get_full_name}}</td>
+                <td class="p-5">{{advert.get_price_split}}</td>
+                <td class="p-5"><span class="tag tag-success">
+                        {% if advert.get_status %}
+                        <span class="badge badge-danger">فعال</span>
+                        {% else %}
+                        <span class="badge badge-warning">غیر فعال</span>
+                        {% endif %}
+                    </span></td>
+                <td class="p-5">{{advert.created_at|timesince}}</td>
+                <td>
+                    <a href="#" class="btn btn-warning m-1"><i class="fas fa-edit"></i></a>
+                    <br>
+                    <a href="#" class="btn btn-danger m-1"><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

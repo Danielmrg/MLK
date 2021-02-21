@@ -1,0 +1,45 @@
+<div class="card-box-a card-shadow">
+    <div class="img-box-a">
+        <img src="{{obj.get_poster}}" alt="{{obj.title}}" class="img-a" style="max-height:400px;">
+    </div>
+    <div class="card-overlay">
+        <div class="card-overlay-a-content">
+            <div class="card-header-a">
+                <h2 class="card-title-a">
+                    <a href="{{obj.get_absolute_url}}">{{obj.detail}}
+                        <br>قیمت هر متر: {{obj.get_price_of_meter}}</a>
+                </h2>
+            </div>
+            <div class="card-body-a">
+                <div class="price-box d-flex">
+                    <span class="price-a">{{obj.get_category_display}} | {{obj.get_price_split}}</span>
+                </div>
+                <a href="{{obj.get_absolute_url}}" class="link-a">جزئیات
+                    <span class="bi bi-chevron-left"></span>
+                </a>
+            </div>
+            <div class="card-footer-a">
+                <ul class="card-info d-flex justify-content-around p-4">
+                    <li>
+                        <h4 class="card-info-title">متراژ</h4>
+                        <span class="m-2">{{obj.area}}m
+                            <sup>2</sup>
+                        </span>
+                    </li>
+                    <li>
+                        <h4 class="card-info-title">اتاق خواب</h4>
+                        <span class="m-2">{{obj.beds}}</span>
+                    </li>
+                    <li>
+                        <h4 class="card-info-title">حمام</h4>
+                        <span class="m-2">{{obj.baths}}</span>
+                    </li>
+                    <li>
+                        <h4 class="card-info-title">سروریس بهداشتی</h4>
+                        <span class="m-2">{{obj.wc}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

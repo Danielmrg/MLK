@@ -1,0 +1,57 @@
+<div class="col-md-12">
+    <div class="row section-t3">
+        <div class="col-sm-12">
+            <div class="title-box-d">
+                <h3 class="title-d">تماس با مشاور</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-lg-4">
+            <img src="{{user.get_image}}" alt="" class="img-fluid">
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="property-agent">
+                <h4 class="title-agent">{{user.get_full_name}}</h4>
+                {% if user.bio %}
+                <p class="color-text-a">
+                    {{user.bio}}
+                </p>
+                {% endif %}
+                <ul class="list-unstyled">
+                    <li class="d-flex justify-content-between">
+                        <strong>شماره بنگاه:</strong>
+                        <span class="color-text-a">(222) 4568932</span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                        <strong>تلفن:</strong>
+                        <span class="color-text-a">{{user.phone}}</span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                        <strong>ایمیل:</strong>
+                        <span class="color-text-a">{{user.email}}</span>
+                    </li>
+                </ul>
+                <div class="socials-a">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="bi bi-twitter" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="bi bi-instagram" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="bi bi-linkedin" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

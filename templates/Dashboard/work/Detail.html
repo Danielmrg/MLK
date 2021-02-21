@@ -1,0 +1,103 @@
+{% extends "dashboard/base/main.html" %}
+{% load static %}
+{% block title %}جزئیات-{{advert.title}}{% endblock title %}
+
+{% block body %}
+<div class="card card-solid">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <h3 class="d-inline-block d-sm-none">{{advert.title|title}}</h3>
+                <div class="col-12">
+                    <img src="{{advert.get_poster}}" class="product-image" alt="Product Image">
+                </div>
+                <!-- <div class="col-12 product-image-thumbs">
+                    <div class="product-image-thumb active"><img src="../../dist/img/prod-1.jpg"
+                            alt="Product Image"></div>
+                    <div class="product-image-thumb"><img src="../../dist/img/prod-2.jpg" alt="Product Image">
+                    </div>
+                    <div class="product-image-thumb"><img src="../../dist/img/prod-3.jpg" alt="Product Image">
+                    </div>
+                    <div class="product-image-thumb"><img src="../../dist/img/prod-4.jpg" alt="Product Image">
+                    </div>
+                    <div class="product-image-thumb"><img src="../../dist/img/prod-5.jpg" alt="Product Image">
+                    </div>
+                </div> -->
+            </div>
+            <div class="col-12 col-sm-6">
+                <h3 class="my-3">{{advert.title|title}}</h3>
+                <h6>جزئیات:</h6>
+                <p>{{advert.detail}}</p>
+                <hr>
+                <div class="col-12">
+                    <p class="lead">سایر موارد:</p>
+
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th style="width:50%">بنگاه:</th>
+                                    <td>ارتان</td>
+                                </tr>
+                                <tr>
+                                    <th>قیمت:</th>
+                                    <td>{{advert.get_price}}</td>
+                                </tr>
+                                <tr>
+                                    <th>نویسنده:</th>
+                                    <td>{{advert.user.get_full_name}}</td>
+                                </tr>
+                                <tr>
+                                    <th>اخرین بروزرسانی:</th>
+                                    <td>{{advert.updated_at|timesince}}</td>
+                                </tr>
+                                <tr>
+                                    <th>وضعیت:</th>
+                                    <td><span class="tag tag-success">
+                                            {% if advert.get_status %}
+                                            <span class="badge badge-danger">فعال</span>
+                                            {% else %}
+                                            <span class="badge badge-dark">معامله شده</span>
+                                            {% endif %}
+                                        </span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-sm">
+                        <i class="fas fa-phone fa-lg mr-2"></i>
+                        تماس با آگهی دهنده
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <nav class="w-100">
+                <div class="nav nav-tabs" id="product-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc"
+                        role="tab" aria-controls="product-desc" aria-selected="true">توضیحات</a>
+                    <a class="nav-item nav-link" id="product-comments-tab" data-toggle="tab" href="#product-comments"
+                        role="tab" aria-controls="product-comments" aria-selected="false">نظرات</a>
+                </div>
+            </nav>
+            <div class="tab-content p-3" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="product-desc" role="tabpanel"
+                    aria-labelledby="product-desc-tab"> {{advert.description}} </div>
+                <div class="tab-pane fade" id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab">
+                    Vivamus rhoncus nisl sed venenatis luctus. Sed
+                    condimentum risus ut tortor feugiat laoreet. Suspendisse potenti. Donec et finibus sem, ut
+                    commodo lectus. Cras eget neque dignissim, placerat orci interdum, venenatis odio. Nulla
+                    turpis elit, consequat eu eros ac, consectetur fringilla urna. Duis gravida ex pulvinar
+                    mauris ornare, eget porttitor enim vulputate. Mauris hendrerit, massa nec aliquam cursus, ex
+                    elit euismod lorem, vehicula rhoncus nisl dui sit amet eros. Nulla turpis lorem, dignissim a
+                    sapien eget, ultrices venenatis dolor. Curabitur vel turpis at magna elementum hendrerit vel
+                    id dui. Curabitur a ex ullamcorper, ornare velit vel, tincidunt ipsum. </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

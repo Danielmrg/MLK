@@ -1,0 +1,121 @@
+{% extends 'Home/Base/main.html' %}
+
+{% block title %}{{title}}{% endblock title %}
+
+{% block style %}
+{% endblock style %}
+
+{% block body %}
+<main class="mt-5 p-5">
+    <div class="container wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+        <h2 class="my-5 h2 text-center">{{title}}</h2>
+        <div class="row">
+            <div class="col-lg-6 col-sm-12 mx-auto">
+                <form method="POST">
+                    {% csrf_token %}
+                    <!-- 2 column grid layout with text inputs for the first and last names -->
+                    <div class="row mb-4">
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="{{form.Firstname.id_for_label}}">نام</label>
+                                {{ form.Firstname }}
+                                {% for error in form.Firstname.errors %}
+                                <p class="text-danger">{{error}}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="{{form.Lastname.id_for_label}}">نام خانوادگی</label>
+                                {{ form.Lastname }}
+                                {% for error in form.Lastname.errors %}
+                                <p class="text-danger">{{error}}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- User name -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="{{form.username.id_for_label}}">نام مستعار</label>
+                        {{ form.username }}
+                        {% for error in form.username.errors %}
+                        <p class="text-danger">{{error}}</p>
+                        {% endfor %}
+                    </div>
+                    {% comment %}
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="{{form.email.id_for_label}}">ادرس ایمیل</label>
+                        {{ form.email }}
+                        {% for error in form.email.errors %}
+                        <p class="text-danger">{{error}}</p>
+                        {% endfor %}
+                    </div>
+
+                    {% endcomment %}
+                    <!-- Phone -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="{{form.phone.id_for_label}}">شماره تلفن</label>
+                        {{ form.phone }}
+                        {% for error in form.phone.errors %}
+                        <p class="text-danger">{{error}}</p>
+                        {% endfor %}
+                    </div>
+
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="{{form.password.id_for_label}}">رمز عبور</label>
+                        {{ form.password }}
+                        {% for error in form.password.errors %}
+                        <p class="text-danger">{{error}}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="{{form.re_password.id_for_label}}">تکرار رمز عبور</label>
+                        {{ form.re_password }}
+                        {% for error in form.re_password.errors %}
+                        <p class="text-danger">{{error}}</p>
+                        {% endfor %}
+                    </div>
+
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block mb-4">ثبت نام</button>
+
+                    <!-- Register buttons -->
+                    <div class="text-center">
+                        <p>ثبت نام با:</p>
+                        <button type="button" class="btn btn-primary btn-floating mx-1">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+
+                        <button type="button" class="btn btn-primary btn-floating mx-1">
+                            <i class="fab fa-google"></i>
+                        </button>
+
+                        <button type="button" class="btn btn-primary btn-floating mx-1">
+                            <i class="fab fa-twitter"></i>
+                        </button>
+
+                        <button type="button" class="btn btn-primary btn-floating mx-1">
+                            <i class="fab fa-github"></i>
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</main>
+
+{% endblock body %}
+
+{% block script %}
+<script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+</script>
+{% endblock script %}
