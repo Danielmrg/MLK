@@ -126,3 +126,6 @@ class AdvertView(models.Model):
     
 class Option(models.Model):
     title = models.CharField(max_length=150,verbose_name='عنوان',blank=False, null=False,unique=True)
+    
+    def __str__(self):
+        return f"{self.title}"

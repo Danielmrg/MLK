@@ -1,8 +1,9 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 from advert.models import Advert
 from authentication.models import User
 from django.contrib.auth.decorators import login_required
 from authentication.decorators import IsAllowRole
+from advert.forms import AdvertForm
 
 # @login_required(login_url="home:home")
 @IsAllowRole
@@ -48,3 +49,14 @@ def Group_adverts(request):
           'adverts': all_adverts,
     }
     return render(request,'dashboard/work/My_page.html',context)
+
+@IsAllowRole
+def Add_advert(request):
+    form = AdvertForm()
+    if form.is_valid():
+        form.Save()
+        return redirect("dashboard:home")
+    context = {
+        'form':form
+    }
+    return render(request,'dashboard/forms/forms.html',context)

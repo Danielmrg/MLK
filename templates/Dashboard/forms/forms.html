@@ -1,5 +1,4 @@
 {% extends "dashboard/base/main.html" %}
-{% load crispy_forms_tags %}
 {% block title %}اضافه کردن آگهی{% endblock title %}
 
 {% block body %}
@@ -21,32 +20,105 @@
                             <form method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="form-row">
-                                    <div class="form-group col-md-6 mb-0">
-                                        {{form.title|as_crispy_field}}
+                                    <div class="form-group col-md-4">
+                                        <label for="{{form.title.id_for_label}}">عنوان</label>
+                                        {{form.title}}
                                     </div>
-                                    <div class="form-group col-md-6 mb-0">
-                                        {{form.price|as_crispy_field}}
+                                    <div class="form-group col-md-4">
+                                        <label for="{{form.detail.id_for_label}}">جزئیات</label>
+                                        {{form.detail}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="{{form.year_created.id_for_label}}">سال ساخت</label>
+                                        {{form.year_created}}
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col-md-6 mb-0">
-                                        {{form.category|as_crispy_field}}
+                                    <div class="form-group col-md-4">
+                                        <label for="{{form.category.id_for_label}}">دسته بندی</label>
+                                        {{form.category}}
                                     </div>
-                                    <div class="form-group col-md-6 mb-0">
-                                        {{form.address|as_crispy_field}}
+                                    <div class="form-group col-md-4">
+                                        <label for="{{form.house_type.id_for_label}}">نوع واحد</label>
+                                        {{form.house_type}}
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="{{form.stat.id_for_label}}">منطقه</label>
+                                        {{form.stat}}
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="{{form.price.id_for_label}}">قیمت</label>
+                                        {{form.price}}
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="{{form.area.id_for_label}}">متراژ</label>
+                                        {{form.area}}
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="{{form.url.id_for_label}}">ادرس فایل ویدیو</label>
+                                        {{form.url}}
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="{{form.beds.id_for_label}}">اتاق خواب</label>
+                                        {{form.beds}}
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="{{form.baths.id_for_label}}">حمام</label>
+                                        {{form.baths}}
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="{{form.wc.id_for_label}}">سرویس بهداشتی</label>
+                                        {{form.wc}}
+                                    </div>
+                                </div>
 
+                                <div class="form-group">
+                                    <label for="form.description.id_for_label">توضیحات</label>
+                                    {{form.description}}
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="{{form.poster.id_for_label}}">پستر</label>
+                                        {{form.poster}}
                                     </div>
                                 </div>
-                                {{form.image|as_crispy_field}}
-                                <div class="form-row">
-                                    {{form.send_in_estate|as_crispy_field}}
-                                    {{form.send_in_publish|as_crispy_field}}
+                                <div class="form-group">
+                                    <div class="form-group col-md-12">
+                                        <label for="{{form.options.id_for_label}}">ویژگی ها:</label>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="row col-md-10">
+                                            {% for op in form.options %}
+                                            <div class="form-check">
+                                                {{op}}
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label>سایر موارد:</label>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="row col-md-10">
+                                            <div class="form-check">
+                                                {{form.is_public}}
+                                                <label for="form.is_public.id_for_label">انتشار عمومی</label>
+                                            </div>
+                                            <div class="form-check">
+                                                {{form.garages}}
+                                                <label for="form.garages.id_for_label">پارکینگ دارد/ندارد</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                {{form.description|as_crispy_field}}
-                                {% for hidden in form.hidden_fields %}
-                                {{ hidden }}
-                                {% endfor %}
+                                {{form.user}}
                                 <button type="submit" class="btn btn-success">ثبت آگهی</button>
+                                <a href="{% url 'dashboard:home' %}" class="btn btn-danger">لغو</a>
                             </form>
                         </div>
                     </div>

@@ -38,7 +38,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#"
+                            <a href="{% url 'dashboard:add-advert' %}"
                                 class="nav-link {% if request.resolver_match.url_name in 'add-advert' %}active{% endif %}">
                                 <i class="fas fa-edit nav-icon"></i>
                                 <p>ثبت آگهی</p>
